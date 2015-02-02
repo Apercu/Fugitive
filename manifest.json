@@ -1,7 +1,7 @@
 {
   "name": "Fugitive",
   "description": "no ads, no bullshit, real privacy.",
-  "version": "0.2",
+  "version": "0.3",
   "manifest_version": 2,
   "icons": {
     "16": "img/16.png",
@@ -13,18 +13,13 @@
   "background" : {
     "scripts": ["js/background.js"]
   },
-  "commands": {
-    "convert-current-url": {
-      "suggested_key": {
-        "default": "MacCtrl+Shift+F"
-      },
-      "description": "Create a fugitive link using your current URL."
-    }
+  "browser_action": {
+    "default_title": "Fugitive",
+    "default_icon": "img/48.png"
   },
   "permissions": [
     "clipboardWrite",
     "contextMenus",
-    "tabs",
     "http://fugitive.link/create"
   ]
 }

@@ -19,20 +19,12 @@ function createFugitiveToClipboard (url) {
     }
   }
 
-  if (url) {
-    request.send('dst=' + url);
-  } else {
-    chrome.tabs.query({ 'active': true, 'lastFocusedWindow': true }, function (tabs) {
-      request.send('dst=' + tabs[0].url);
-    });
-  }
+  request.send('dst=' + url);
 
 }
 
-chrome.commands.onCommand.addListener(function (command) {
-  if (command === 'convert-current-url') {
-    createFugitiveToClipboard();
-  }
+chrome.browserAction.onClicked.addListener(function (tab) {
+  createFugitiveToClipboard(tab.url);
 });
 
 chrome.contextMenus.create({ title: 'Create a fugitive to this link', contexts: ['link'], onclick: function (res) {
