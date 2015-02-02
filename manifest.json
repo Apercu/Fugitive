@@ -1,7 +1,7 @@
 {
   "name": "Fugitive",
   "description": "no ads, no bullshit, real privacy.",
-  "version": "0.1",
+  "version": "0.2",
   "manifest_version": 2,
   "icons": {
     "16": "img/16.png",
@@ -16,7 +16,7 @@
   "commands": {
     "convert-current-url": {
       "suggested_key": {
-        "default": "Ctrl+Shift+F"
+        "default": "MacCtrl+Shift+F"
       },
       "description": "Create a fugitive link using your current URL."
     }
