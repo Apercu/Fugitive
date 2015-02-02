@@ -36,8 +36,6 @@ chrome.commands.onCommand.addListener(function (command) {
 });
 
 chrome.contextMenus.create({ title: 'Create a fugitive to this link', contexts: ['link'], onclick: function (res) {
-  if (res.linkUrl === 'javascript:void(0)') {
-    return ;
-  }
+  if (!res.linkUrl || res.linkUrl === 'javascript:void(0)') { return ; }
   createFugitiveToClipboard(res.linkUrl);
 }});
