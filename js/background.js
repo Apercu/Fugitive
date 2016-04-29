@@ -1,35 +1,36 @@
-var baseUrl = 'http://fugitive.bangular.io/'
+var baseUrl = 'http://f.sigsev.io/'
 
 function createFugitiveToClipboard (url) {
 
-  var request = new XMLHttpRequest();
+  var request = new XMLHttpRequest()
 
-  request.open('POST', baseUrl + 'create', true);
-  request.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+  request.open('POST', baseUrl + 'create', true)
+  request.setRequestHeader('Content-type', 'application/x-www-form-urlencoded')
 
   request.onreadystatechange = function () {
-    if (request.readyState === 4 && request.status === 201) {
-      var txt = document.createElement('textarea');
-      document.body.appendChild(txt);
+    if (request.readyState === 4 && request.status === 200) {
+      var txt = document.createElement('textarea')
+      txt.style.position = 'fixed'
+      txt.style.opacity = 0
+      txt.value = baseUrl + request.response
 
-      txt.value = baseUrl + JSON.parse(request.response).src;
-      txt.focus();
-      txt.select();
-      document.execCommand('copy');
+      document.body.appendChild(txt)
+      txt.select()
+      document.execCommand('copy')
 
-      txt.remove();
+      txt.remove()
     }
   }
 
-  request.send('dst=' + url);
+  request.send('dst=' + url)
 
 }
 
 chrome.browserAction.onClicked.addListener(function (tab) {
-  createFugitiveToClipboard(tab.url);
-});
+  createFugitiveToClipboard(tab.url)
+})
 
 chrome.contextMenus.create({ title: 'Create a fugitive to this link', contexts: ['link'], onclick: function (res) {
-  if (!res.linkUrl || res.linkUrl === 'javascript:void(0)') { return ; }
-  createFugitiveToClipboard(res.linkUrl);
-}});
+  if (!res.linkUrl || res.linkUrl === 'javascript:void(0)') { return }
+  createFugitiveToClipboard(res.linkUrl)
+}})
