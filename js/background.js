@@ -8,11 +8,12 @@ function createFugitiveToClipboard (url) {
   request.setRequestHeader('Content-type', 'application/x-www-form-urlencoded')
 
   request.onreadystatechange = function () {
-    if (request.readyState === 4 && request.status === 200) {
+    if (request.readyState === 4 && request.status === 201) {
+      var src = JSON.parse(request.response).src
       var txt = document.createElement('textarea')
       txt.style.position = 'fixed'
       txt.style.opacity = 0
-      txt.value = baseUrl + request.response
+      txt.value = baseUrl + src
 
       document.body.appendChild(txt)
       txt.select()
