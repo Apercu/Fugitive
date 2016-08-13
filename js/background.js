@@ -1,4 +1,4 @@
-var baseUrl = 'http://f.sigsev.io/'
+var baseUrl = 'https://fugitive.sigsev.io/'
 
 function createFugitiveToClipboard (url) {
 
